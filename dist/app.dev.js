@@ -131,7 +131,7 @@ var startApp = function startApp() {
           options = _context3.sent;
 
           if (!(options.watermarkType === 'Text watermark')) {
-            _context3.next = 15;
+            _context3.next = 23;
             break;
           }
 
@@ -145,20 +145,31 @@ var startApp = function startApp() {
         case 10:
           text = _context3.sent;
           options.watermarkText = text.value;
+          _context3.prev = 12;
 
-          try {
-            if (fs.existsSync('/' + options.inputImage)) {
-              addTextWatermarkToImage('./img/' + options.inputImage, './img/' + prepareOutputFilename(options.inputImage), options.watermarkText);
-            }
-          } catch (_unused) {
-            console.log("File doesn't exist!");
+          if (!fs.existsSync('/' + options.inputImage)) {
+            _context3.next = 16;
+            break;
           }
 
-          _context3.next = 20;
+          _context3.next = 16;
+          return regeneratorRuntime.awrap(addTextWatermarkToImage('./img/' + options.inputImage, './img/' + prepareOutputFilename(options.inputImage), options.watermarkText));
+
+        case 16:
+          _context3.next = 21;
           break;
 
-        case 15:
-          _context3.next = 17;
+        case 18:
+          _context3.prev = 18;
+          _context3.t0 = _context3["catch"](12);
+          console.log("File doesn't exist!");
+
+        case 21:
+          _context3.next = 36;
+          break;
+
+        case 23:
+          _context3.next = 25;
           return regeneratorRuntime.awrap(inquirer.prompt([{
             name: 'filename',
             type: 'input',
@@ -166,24 +177,34 @@ var startApp = function startApp() {
             "default": 'logo.png'
           }]));
 
-        case 17:
+        case 25:
           image = _context3.sent;
           options.watermarkImage = image.filename;
+          _context3.prev = 27;
 
-          try {
-            if (fs.existsSync('/' + options.inputImage)) {
-              addImageWatermarkToImage('./img/' + options.inputImage, './img/' + prepareOutputFilename(options.inputImage), './img/' + options.watermarkImage);
-            }
-          } catch (_unused2) {
-            console.log("File doesn't exist!");
+          if (!fs.existsSync('/' + options.inputImage)) {
+            _context3.next = 31;
+            break;
           }
 
-        case 20:
+          _context3.next = 31;
+          return regeneratorRuntime.awrap(addImageWatermarkToImage('./img/' + options.inputImage, './img/' + prepareOutputFilename(options.inputImage), './img/' + options.watermarkImage));
+
+        case 31:
+          _context3.next = 36;
+          break;
+
+        case 33:
+          _context3.prev = 33;
+          _context3.t1 = _context3["catch"](27);
+          console.log("File doesn't exist!");
+
+        case 36:
         case "end":
           return _context3.stop();
       }
     }
-  });
+  }, null, null, [[12, 18], [27, 33]]);
 };
 
 startApp();

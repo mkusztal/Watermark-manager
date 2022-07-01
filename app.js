@@ -85,7 +85,7 @@ const startApp = async () => {
 
     try {
       if (fs.existsSync('/' + options.inputImage)) {
-        addTextWatermarkToImage(
+        await addTextWatermarkToImage(
           './img/' + options.inputImage,
           './img/' + prepareOutputFilename(options.inputImage),
           options.watermarkText
@@ -107,7 +107,7 @@ const startApp = async () => {
 
     try {
       if (fs.existsSync('/' + options.inputImage)) {
-        addImageWatermarkToImage(
+        await addImageWatermarkToImage(
           './img/' + options.inputImage,
           './img/' + prepareOutputFilename(options.inputImage),
           './img/' + options.watermarkImage
