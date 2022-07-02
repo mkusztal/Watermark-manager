@@ -147,7 +147,7 @@ var startApp = function startApp() {
           options.watermarkText = text.value;
           _context3.prev = 12;
 
-          if (!fs.existsSync('/' + options.inputImage)) {
+          if (!fs.existsSync('/img/' + options.inputImage)) {
             _context3.next = 16;
             break;
           }
@@ -182,7 +182,7 @@ var startApp = function startApp() {
           options.watermarkImage = image.filename;
           _context3.prev = 27;
 
-          if (!fs.existsSync('/' + options.inputImage)) {
+          if (!fs.existsSync('/img/' + options.inputImage)) {
             _context3.next = 31;
             break;
           }
